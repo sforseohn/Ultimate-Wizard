@@ -76,7 +76,6 @@ public class CharacterDialogue : MonoBehaviour
     }
 
     public void EndDialogue() {
-        StopCoroutine("Next");
         // 텍스트 초기화
         sentence.text = "";
         character_name.text = "";
@@ -117,7 +116,7 @@ public class CharacterDialogue : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         } else { // 모든 스크립트 출력 끝나면 다음 장면으로 넘어감
-            EndDialogue();
+            Skip();
         }
     }
 
