@@ -8,6 +8,7 @@ TagManager:
   - BorderBullet
   - Border
   - PlayerBullet
+  - MonsterBullet
   layers:
   - Default
   - TransparentFX

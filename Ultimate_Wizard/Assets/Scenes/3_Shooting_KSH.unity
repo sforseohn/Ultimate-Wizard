@@ -374,9 +374,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   speed: 1
-  delay: 0.2
+  delay: 0.5
   curDelay: 0
+  roundNum: 30
   bullet: {fileID: 37806194603915000, guid: dd1dae7dcbe3db242b669bb04011dda3, type: 3}
+  bullet6: {fileID: 3412746958768589841, guid: d067b9ee89a060c418b14cb36691a951, type: 3}
+  bullet7: {fileID: 3412746958768589841, guid: d067b9ee89a060c418b14cb36691a951, type: 3}
   player: {fileID: 583157096}
 --- !u!61 &1733789194
 BoxCollider2D:
