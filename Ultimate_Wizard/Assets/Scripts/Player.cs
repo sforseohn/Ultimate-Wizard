@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+    public bool isHurt;
 
     public GameManager manager;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     //총알 속도 조정
     public float maxShotDelay;
     public float curShotDelay;
+
 
 
 
@@ -125,6 +127,12 @@ public class Player : MonoBehaviour
 
          else if (collision.gameObject.tag == "MonsterBullet")
         {
+
+            if (isHurt)
+                return;
+
+            isHurt = true;
+
             attack = false;
             life--;
             manager.UpdateLifeIcon(life);
