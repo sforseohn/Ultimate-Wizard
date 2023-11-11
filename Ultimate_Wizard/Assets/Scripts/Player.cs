@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 2.0f;
+    public float speed = 1.0f;
     public float power = 1.0f;
     public bool isTouchTop;
     public bool isTouchBottom;
@@ -14,6 +14,13 @@ public class Player : MonoBehaviour
 
     public int life = 3;
     private bool attack = true;
+
+    //public GameObject dummyHead;
+    Sprite selectedSprite = null;
+
+    public Sprite Sonic_h;
+    public Sprite Hercules_h;
+    public Sprite Zombie_h;
 
 
     public float maxShotDelay;
@@ -34,6 +41,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
        ui = GameObject.FindObjectOfType<UIManager>();
+        facechange();
     }
 
     // Update is called once per frame
@@ -57,6 +65,46 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    void facechange()
+    {
+       int dum = GameManager.instance.dum;
+
+        switch (dum)
+        {
+
+            case 0:
+                selectedSprite = Sonic_h;
+                ChangeDummyface(selectedSprite);
+                speed = 1.5f;
+
+                break;
+            case 1:
+                selectedSprite = Hercules_h;
+                ChangeDummyface(selectedSprite);
+                power =2;
+                break;
+            case 2:
+                selectedSprite = Zombie_h;
+                ChangeDummyface(selectedSprite);
+                life = 4;
+                break;
+
+            default:
+                selectedSprite = Sonic_h;
+                ChangeDummyface(selectedSprite);
+                speed = 1.5f;
+                break;
+
+        }
+    }
+
+    public void ChangeDummyface(Sprite newSprite)
+    {
+        SpriteRenderer dummyRenderer = gameObject.GetComponent<SpriteRenderer>();
+        dummyRenderer.sprite = newSprite;
+
+    }
     void MoveCharacter(Vector2 delta)
     {
         float newSpeed;

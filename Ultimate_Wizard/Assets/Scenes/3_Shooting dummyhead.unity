@@ -1319,17 +1319,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1352291629}
   dummy: {fileID: 0}
-  lifeImage:
-  - {fileID: 701658337}
-  - {fileID: 784725825}
-  - {fileID: 454274353}
+  lifeImage: []
   fulllife: {fileID: 21300000, guid: 302c1211d84f6a644b1b69ab4b03064f, type: 3}
   emptylife: {fileID: 21300000, guid: f24705dc968edd24e97ef87b92b291c8, type: 3}
+  Sonic_h: {fileID: 21300000, guid: 15a08963c54cd2841a66a90791a0e6c3, type: 3}
+  Hercules_h: {fileID: 21300000, guid: 72d052ee69577b44184295b442bc79c1, type: 3}
+  Zombie_h: {fileID: 21300000, guid: 5d9d4a21415d2cf41866559b1df1f053, type: 3}
   Sonic: {fileID: 21300000, guid: 900e5d9d4182c0b4f918a836c24aac8a, type: 3}
   Hercules: {fileID: 21300000, guid: ebf6db2a11c00154faf284a2ed776d5a, type: 3}
   Zombie: {fileID: 21300000, guid: 5d45a2d541e7253459236f9a29a7cad5, type: 3}
-  EvolutionUI: {fileID: 181837607}
-  dum: 0
+  EvolutionUI: {fileID: 0}
 --- !u!4 &979318852
 Transform:
   m_ObjectHideFlags: 0
@@ -1976,9 +1975,6 @@ MonoBehaviour:
   isTouchRight: 0
   isHurt: 0
   life: 3
-  Sonic_h: {fileID: 21300000, guid: 15a08963c54cd2841a66a90791a0e6c3, type: 3}
-  Hercules_h: {fileID: 21300000, guid: 72d052ee69577b44184295b442bc79c1, type: 3}
-  Zombie_h: {fileID: 21300000, guid: 5d9d4a21415d2cf41866559b1df1f053, type: 3}
   maxShotDelay: 0.2
   curShotDelay: 0
   bulletObjA: {fileID: 4685201363630398292, guid: 9be80285a99688a4d8c7d5f97a1eb653, type: 3}
