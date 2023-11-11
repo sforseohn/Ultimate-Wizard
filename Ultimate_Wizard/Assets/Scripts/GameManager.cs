@@ -132,9 +132,9 @@ public class GameManager : MonoBehaviour
         EvolutionUI.SetActive(true);
     }
 
-    public void Letsgo()
+    public void Letsgo(string scene_name)
     {
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(scene_name);
     }
 
     public void GameOver()
