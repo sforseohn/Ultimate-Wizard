@@ -13,7 +13,8 @@ public class SoundManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "1_StoryFirst"
             || SceneManager.GetActiveScene().name == "1_StorySecond"
             || SceneManager.GetActiveScene().name == "4_Ending_Char"
-            || SceneManager.GetActiveScene().name == "4_Ending_Narr") {
+            || SceneManager.GetActiveScene().name == "4_Ending_Narr"
+            || SceneManager.GetActiveScene().name == "4_Ending") {
             if(soundManagers.Length == 1) {
                 DontDestroyOnLoad(gameObject);
                 Debug.Log($"'{gameObject}'");
@@ -43,5 +44,9 @@ public class SoundManager : MonoBehaviour
 
     public void DestroyBgm() {
         Destroy(gameObject);
+    }
+
+    public void Clap(AudioSource audio) {
+        audio.Play();
     }
 }
