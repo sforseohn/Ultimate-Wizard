@@ -215,13 +215,12 @@ GameObject:
   - component: {fileID: 150240767}
   - component: {fileID: 150240766}
   m_Layer: 5
-
-  m_Name: Life Icon2
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &150240765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -610,17 +609,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312d1ffa29011d64dadb2eb0f4bf43d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0.25
+  power: 15
   isTouchTop: 0
   isTouchBottom: 0
   isTouchLeft: 0
   isTouchRight: 0
-
   isHurt: 0
-
-  manager: {fileID: 849415691}
   life: 3
-  maxShotDelay: 0.5
+  maxShotDelay: 0.2
   curShotDelay: 0
   bulletObjA: {fileID: 4685201363630398292, guid: 9be80285a99688a4d8c7d5f97a1eb653, type: 3}
 --- !u!50 &603042210
@@ -710,7 +707,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &603042214
 CircleCollider2D:
@@ -728,8 +724,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.22239608}
   serializedVersion: 2
   m_Radius: 0.48472625
- 
-
 --- !u!1 &849415690
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,11 +754,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 603042208}
+  dummy: {fileID: 0}
   lifeImage:
   - {fileID: 1046578027}
   - {fileID: 150240766}
   - {fileID: 952060492}
-  gameOverSet: {fileID: 1380510190}
+  fulllife: {fileID: 0}
+  emptylife: {fileID: 0}
+  Sonic_h: {fileID: 0}
+  Hercules_h: {fileID: 0}
+  Zombie_h: {fileID: 0}
+  Sonic: {fileID: 0}
+  Hercules: {fileID: 0}
+  Zombie: {fileID: 0}
+  EvolutionUI: {fileID: 0}
 --- !u!4 &849415692
 Transform:
   m_ObjectHideFlags: 0
@@ -995,12 +998,11 @@ GameObject:
   - component: {fileID: 952060492}
   m_Layer: 5
   m_Name: Life Icon3
-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &952060491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1139,14 +1141,12 @@ GameObject:
   - component: {fileID: 1046578028}
   - component: {fileID: 1046578027}
   m_Layer: 5
-
-  m_Name: Life Icon
-
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1046578026
 RectTransform:
   m_ObjectHideFlags: 0
