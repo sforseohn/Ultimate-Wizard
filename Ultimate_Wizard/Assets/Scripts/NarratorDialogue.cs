@@ -4,44 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// 대화 클래스
-[System.Serializable]
-public class Dialogue {
-    public string name;
-    [TextArea] public string dialogue;
-    public Sprite image;
-}
-
-public class DialogueSystem : MonoBehaviour
+public class NarratorDialogue : MonoBehaviour
 {
     [SerializeField] private Image image; // 페이드아웃 효과에 쓰일 이미지
-    [SerializeField] private float delay_time = 1.5f;
+    [SerializeField] private float delay_time = 1.0f;
     [SerializeField] private Animator anim; // 대화창 open, close 애니메이터
     [SerializeField] private string scene_name;
 
-    [SerializeField] private Text character_name; // 캐릭터 이름
     [SerializeField] private Text sentence; // 대화 내용
-    [SerializeField] private SpriteRenderer sprite_character; // 캐릭터 이미지 제어 변수
     [SerializeField] private Image dialogue_box; // 다이얼로그 박스 제어 변수
     [SerializeField] private GameObject button_ui; // 상단 건너뛰기 & 끝내기 버튼
 
     private bool isDialogue = false; // 대화가 진행중인지
     private int count = 0; // 대화 얼마나 진행되었는지
 
-    [SerializeField] private Dialogue[] dialogues;
+    [SerializeField] private Narrator[] dialogues;
+
     public string text = "";
 
     // 초기 세팅
     private void Awake() {
         sentence.text = "";
-        character_name.text = "";
     }
 
     private void Start() {
-        Debug.Log("2_Story 진행 시작");
+        Debug.Log("4_Ending_Narr 진행 시작");
         // 대화 화면 비활성화
         StartDialogue(false);
-        sprite_character.gameObject.SetActive(false);
         // 배경 이미지 페이드 인 효과
         StartCoroutine("FadeOutCoroutine");
     }
@@ -55,10 +44,6 @@ public class DialogueSystem : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             image.color = new Color(0, 0, 0, fadeCount);
         }
-
-        // 다음 애니메이션 전 딜레이
-        yield return new WaitForSeconds(0.15f);
-        sprite_character.gameObject.SetActive(true);
         
         // 다음 애니메이션 전 딜레이
         yield return new WaitForSeconds(delay_time);
@@ -86,18 +71,16 @@ public class DialogueSystem : MonoBehaviour
         StopCoroutine("Next");
         // 텍스트 초기화
         sentence.text = "";
-        character_name.text = "";
 
         // 대화 종료
         StartDialogue(false);
         anim.SetBool("isOpen", false);
 
         // 화면 전환
-        StartCoroutine(FadeInCoroutine());
+        StartCoroutine("FadeInCoroutine");
     }
 
     private void StartDialogue(bool flag) {
-        sprite_character.gameObject.SetActive(flag);
         button_ui.SetActive(flag);
         isDialogue = flag;
     }
@@ -106,11 +89,6 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator Next() {
         // 아직 스크립트 남아있을 경우
         if(count < dialogues.Length) {
-            // 캐릭터 이름
-            character_name.text = dialogues[count].name;
-            // 캐릭터 이미지
-            sprite_character.sprite = dialogues[count].image;
-            
             // 텍스트 타이핑 효과
             string s = dialogues[count].dialogue;
             count++;
@@ -131,8 +109,10 @@ public class DialogueSystem : MonoBehaviour
     // 다이얼로그 창 누르면 전체 대화 출력
     public void DialogueOnClick() {
         StopCoroutine("Next");
-        sentence.text = dialogues[--count].dialogue;
-        count++;
+        if(count > 0) {
+            sentence.text = dialogues[--count].dialogue;
+            count++;
+        }
     }
 
     public void NextButton() {
