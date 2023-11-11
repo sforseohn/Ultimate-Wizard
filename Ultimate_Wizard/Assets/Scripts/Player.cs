@@ -1,4 +1,4 @@
-﻿using System.Collections;
+癤using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,17 @@ public class Player : MonoBehaviour
     public int life = 3;
     private bool attack = true;
 
+    //珥  議곗
+    public float maxShotDelay;
+    public float curShotDelay;
+
+
+
+    public GameManager manager;
+
+    public int life = 3;
+    private bool attack = true;
+
     //총알 속도 조정
     public float maxShotDelay;
     public float curShotDelay;
@@ -24,7 +35,7 @@ public class Player : MonoBehaviour
 
 
     private bool isDragActive = false;
-    //터치 시작점
+    //곗 �
     private Vector2 touchStart;
 
 
@@ -43,18 +54,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // 마우스 클릭한 지점 저장
+            // 留곗 대┃ 吏� �
             touchStart = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            // 마우스 클릭한 지점과 현재 마우스 위치의 차이를 계산
+            // 留곗 대┃ 吏�怨  留곗 移 李⑥대� 怨
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
-            // 캐릭터 이동
+            // 罹由� 대
             MoveCharacter(delta);
 
-            // 마우스 클릭한 지점 업데이트
+            // 留곗 대┃ 吏� 곗댄
             touchStart = Input.mousePosition;
         }
  
@@ -120,24 +131,18 @@ public class Player : MonoBehaviour
 
          else if (collision.gameObject.tag == "MonsterBullet")
         {
-<<<<<<< Updated upstream
-=======
+
             Destroy(collision.gameObject);
 
->>>>>>> Stashed changes
             if (isHurt)
             {
                 return;
             }
             isHurt = true;
-<<<<<<< Updated upstream
-            attack = false;
-=======
 
->>>>>>> Stashed changes
             life--;
             manager.UpdateLifeIcon(life);
-            manager.RespawnPlayer();// 애니메이션 재생, 공격x, 3초 무적 필요
+            manager.RespawnPlayer();// 硫댁 ъ, 怨듦꺽x, 3珥 臾댁 
 
 
 
@@ -156,9 +161,11 @@ public class Player : MonoBehaviour
 
 
 
+
         }
        
     }
+
 
     void OnTriggerExit2D(Collider2D collision)
      {

@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 150240767}
   - component: {fileID: 150240766}
   m_Layer: 5
+
   m_Name: Life Icon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +615,9 @@ MonoBehaviour:
   isTouchBottom: 0
   isTouchLeft: 0
   isTouchRight: 0
+
   isHurt: 0
+
   manager: {fileID: 849415691}
   life: 3
   maxShotDelay: 0.5
@@ -707,6 +710,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &603042214
 CircleCollider2D:
@@ -724,6 +728,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.22239608}
   serializedVersion: 2
   m_Radius: 0.48472625
+ 
+
 --- !u!1 &849415690
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +995,7 @@ GameObject:
   - component: {fileID: 952060492}
   m_Layer: 5
   m_Name: Life Icon3
+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1139,9 @@ GameObject:
   - component: {fileID: 1046578028}
   - component: {fileID: 1046578027}
   m_Layer: 5
+
   m_Name: Life Icon
+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
