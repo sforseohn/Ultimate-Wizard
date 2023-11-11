@@ -22,25 +22,19 @@ public class Player : MonoBehaviour
     public Sprite Hercules_h;
     public Sprite Zombie_h;
 
-
     public float maxShotDelay;
     public float curShotDelay;
 
-  
-
-
     private Vector2 touchStart;
-
 
     public GameObject bulletObjA;
     private UIManager ui;
-
 
     //Animator anim;
 
     private void Start()
     {
-       ui = GameObject.FindObjectOfType<UIManager>();
+        ui = GameObject.FindObjectOfType<UIManager>();
         facechange();
     }
 
