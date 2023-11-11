@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed;
     public float power = 1.0f;
     public bool isTouchTop;
     public bool isTouchBottom;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public Sprite Hercules_h;
     public Sprite Zombie_h;
 
-    public float maxShotDelay;
+    public float maxShotDelay=0.4f;
     public float curShotDelay;
 
     private Vector2 touchStart;
@@ -32,25 +32,19 @@ public class Player : MonoBehaviour
 
     //Animator anim;
 
-    private void Start()
-    {
+    private void Start() {
         ui = GameObject.FindObjectOfType<UIManager>();
         facechange();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Fire();
         Reload();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-
+        if (Input.GetMouseButtonDown(0)) {
             touchStart = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(0))
-        {
+        } else if (Input.GetMouseButton(0)) {
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
             MoveCharacter(delta);
@@ -59,25 +53,21 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    void facechange()
-    {
-       int dum = GameManager.instance.dum;
-
-        switch (dum)
-        {
-
+    void facechange() {
+        int dum = PlayerPrefs.GetInt("dum");
+        switch (dum){
             case 0:
                 selectedSprite = Sonic_h;
                 ChangeDummyface(selectedSprite);
-                speed = 1.5f;
-
+                maxShotDelay = 0.2f;
                 break;
+
             case 1:
                 selectedSprite = Hercules_h;
                 ChangeDummyface(selectedSprite);
                 power =2;
                 break;
+                
             case 2:
                 selectedSprite = Zombie_h;
                 ChangeDummyface(selectedSprite);
@@ -89,126 +79,93 @@ public class Player : MonoBehaviour
                 ChangeDummyface(selectedSprite);
                 speed = 1.5f;
                 break;
-
         }
     }
 
-    public void ChangeDummyface(Sprite newSprite)
-    {
+    public void ChangeDummyface(Sprite newSprite) {
         SpriteRenderer dummyRenderer = gameObject.GetComponent<SpriteRenderer>();
         dummyRenderer.sprite = newSprite;
-
     }
-    void MoveCharacter(Vector2 delta)
-    {
+
+    void MoveCharacter(Vector2 delta) {
         float newSpeed;
-        if (isTouchTop && delta.y > 0 || isTouchBottom && delta.y < 0)
-        {
-
+        if (isTouchTop && delta.y > 0 || isTouchBottom && delta.y < 0) {
             newSpeed = 0;
-        }
-        else
-        {
-
+        } else{
             newSpeed = speed;
-            
         }
-        transform.position += new Vector3(0, delta.y * newSpeed * Time.deltaTime, 0);
 
+        transform.position += new Vector3(0, delta.y * newSpeed * Time.deltaTime, 0);
     }
 
-    void Fire()
-    {
+    void Fire() {
         if ((curShotDelay < maxShotDelay) || (attack = false))
             return;
-
 
         GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
         rigid.AddForce(Vector2.left * power, ForceMode2D.Impulse);
 
         curShotDelay = 0;
-
     }
-    void Reload()
-    {
+
+    void Reload() {
         curShotDelay += Time.deltaTime;
     }
 
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Border")
-        {
-            switch (collision.gameObject.name)
-            {
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Border") {
+            switch (collision.gameObject.name) {
                 case "Top":
                     isTouchTop = true;
                     break;
+
                 case "Bottom":
                     isTouchBottom = true;
-
                     break;
             }
-        }
-
-        else if (collision.gameObject.tag == "MonsterBullet")
-        {
-
-
+        } else if (collision.gameObject.tag == "MonsterBullet") {
             Destroy(collision.gameObject);
 
-            if (isHurt)
-            {
+            if (isHurt) {
                 return;
             }
             isHurt = true;
 
             life--;
             ui.UpdateLifeIcon(life);
-            RespawnPlayer();
+            RespawnPlayer();
 
-            if (life == 0)
-            {
+            if (life == 0) {
                 Destroy(this.gameObject);
                 Time.timeScale = 0;
                 GameManager.instance.GameOver();
-            }
-            else
-            {
+            } else {
                 RespawnPlayer();
             }
         }
-
     }
 
-    public void RespawnPlayer()
-    {
+    public void RespawnPlayer() {
         Invoke("RespawnPlayerExe", 3f);
         // player.transform.position = Vector3.down * 3.5;
         //player.SetActive(true);
     }
 
-    public void RespawnPlayerExe()
-    {
+    public void RespawnPlayerExe() {
         Player playerLogic = gameObject.GetComponent<Player>();
         playerLogic.isHurt = false;
     }
 
-
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Border")
-        {
-            switch (collision.gameObject.name)
-            {
+    void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Border") {
+            switch (collision.gameObject.name) {
                 case "Top":
                     isTouchTop = false;
                     break;
+
                 case "Bottom":
                     isTouchBottom = false;
-
                     break;
 
                     /*  case "Left":
@@ -220,7 +177,6 @@ public class Player : MonoBehaviour
                           isTouchRight = false;
 
                           break;*/
-
             }
         }
     }

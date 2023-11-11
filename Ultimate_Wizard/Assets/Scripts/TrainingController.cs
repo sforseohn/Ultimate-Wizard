@@ -3,10 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TrainingController : MonoBehaviour
 {
-
     // 훈련 내용
     [SerializeField] private GameObject ui;
     [SerializeField] private Text train_1;
@@ -22,8 +22,20 @@ public class TrainingController : MonoBehaviour
     private List<int> candidates = new List<int>();
     private List<string> type_name = new List<string>() {"스피드", "공격", "체력"};
 
+    // 결과 화면[SerializeField]
+    [SerializeField] private dummy dummy;
+    [SerializeField] private GameObject EvolutionUI;
+    private textchange textChangeInstance;
+    Sprite selectedSpritebody;
+
+    [SerializeField] private Sprite Sonic;
+    [SerializeField] private Sprite Hercules;
+    [SerializeField] private Sprite Zombie;
+
     // 초기 세팅
     private void Awake() {
+        textChangeInstance = FindObjectOfType<textchange>();
+        EvolutionUI.SetActive(false);
         ShowTrain(false);
     }
 
@@ -72,10 +84,54 @@ public class TrainingController : MonoBehaviour
         int random = Random.Range(0, candidates.Count);
         Debug.Log($"result(0 스피드, 1 공격력, 2 체력): '{type_name[candidates[random]]}'");
         
-        GameManager.instance.SelectDummy(candidates[random]);
-        GameManager.instance.textchange_(candidates[random]);
+        SelectDummy(candidates[random]);
+        textchange_(candidates[random]);
+    }
 
+    public void textchange_(int candidates) {
+        dummy.changeText(candidates);
+    }
 
+    public void Evolution_dummy() {
+        EvolutionUI.SetActive(true);
+    }
+
+    public void SelectDummy(int candidates) {
+        selectedSpritebody = null;
+        PlayerPrefs.SetInt("dum", candidates);
+
+        switch (candidates){
+            case 0:
+                selectedSpritebody = Sonic;
+                dummy.ChangeDummyImage(selectedSpritebody);
+                Evolution_dummy();
+                break;
+
+            case 1:
+                selectedSpritebody = Hercules;
+                dummy.ChangeDummyImage(selectedSpritebody);
+                Evolution_dummy();
+                break;
+
+            case 2:
+                selectedSpritebody = Zombie;
+                dummy.ChangeDummyImage(selectedSpritebody);
+                Evolution_dummy();
+                break;
+            
+            default:
+                selectedSpritebody = Sonic;
+                dummy.ChangeDummyImage(selectedSpritebody);
+                Evolution_dummy();
+                break;
+        }
+
+        dummy.GetComponent<dummy>().MoveToPosition(0f, 0f);
+    }
+
+    public void NextScene(string scene_name) {
+        // 화면 전환
+        SceneManager.LoadScene(scene_name);
     }
 
     public void Retry() {

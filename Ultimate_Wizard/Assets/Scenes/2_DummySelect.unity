@@ -355,62 +355,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13090126}
   m_CullTransparentMesh: 1
---- !u!1 &23170897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 23170899}
-  - component: {fileID: 23170898}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &23170898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23170897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cafe31a5cb5e54f9d68a282aeb06e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  dummy: {fileID: 2108634411}
-  lifeImage: []
-  fulllife: {fileID: 0}
-  emptylife: {fileID: 0}
-  Sonic_h: {fileID: 21300000, guid: 15a08963c54cd2841a66a90791a0e6c3, type: 3}
-  Hercules_h: {fileID: 21300000, guid: 72d052ee69577b44184295b442bc79c1, type: 3}
-  Zombie_h: {fileID: 21300000, guid: 5d9d4a21415d2cf41866559b1df1f053, type: 3}
-  Sonic: {fileID: 21300000, guid: 900e5d9d4182c0b4f918a836c24aac8a, type: 3}
-  Hercules: {fileID: 21300000, guid: ebf6db2a11c00154faf284a2ed776d5a, type: 3}
-  Zombie: {fileID: 21300000, guid: 5d45a2d541e7253459236f9a29a7cad5, type: 3}
-  EvolutionUI: {fileID: 400374638}
---- !u!4 &23170899
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23170897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248520937
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +723,11 @@ MonoBehaviour:
   - dialogue: "\uC81C\uB77C\uC2A4"
   - dialogue: "\uD53C\uB4E4\uC2A4\uD2F1"
   - dialogue: "\uC560\uB2C8\uBE44\uC544"
+  dummy: {fileID: 2108634411}
+  EvolutionUI: {fileID: 400374638}
+  Sonic: {fileID: 21300000, guid: 900e5d9d4182c0b4f918a836c24aac8a, type: 3}
+  Hercules: {fileID: 21300000, guid: ebf6db2a11c00154faf284a2ed776d5a, type: 3}
+  Zombie: {fileID: 21300000, guid: 5d45a2d541e7253459236f9a29a7cad5, type: 3}
 --- !u!4 &383941615
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,7 +1025,7 @@ Transform:
   m_Children:
   - {fileID: 1360844288}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &557135633
 GameObject:
@@ -3570,9 +3519,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 23170898}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Letsgo
+      - m_Target: {fileID: 383941614}
+        m_TargetAssemblyTypeName: TrainingController, Assembly-CSharp
+        m_MethodName: NextScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
