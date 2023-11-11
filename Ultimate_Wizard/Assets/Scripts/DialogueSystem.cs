@@ -14,10 +14,13 @@ public class Dialogue {
 
 public class DialogueSystem : MonoBehaviour
 {
+    [SerializeField] private Image image; // 페이드아웃 효과에 쓰일 이미지
+
     [SerializeField] private Text character_name; // 캐릭터 이름
     [SerializeField] private Text sentence; // 대화 내용
     [SerializeField] private SpriteRenderer sprite_character; // 캐릭터 이미지 제어 변수
     [SerializeField] private Image dialogue_box; // 다이얼로그 박스 제어 변수
+    [SerializeField] private GameObject button_ui; // 상단 건너뛰기 & 끝내기 버튼
 
     private bool isDialogue = false; // 대화가 진행중인지
     private int count = 0; // 대화 얼마나 진행되었는지
@@ -26,6 +29,26 @@ public class DialogueSystem : MonoBehaviour
     public string text = "";
 
     private void Start() {
+        Debug.Log("2_Story 진행 시작");
+        // 대화 화면 비활성화
+        StartDialogue(false);
+        // 배경 이미지 페이드 인 효과
+        StartCoroutine("FadeOutCoroutine");
+    }
+
+    IEnumerator FadeOutCoroutine() {
+        // 처음 알파값
+        float fadeCount = 1;
+
+        while(fadeCount > 0.0f) {
+            fadeCount -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            image.color = new Color(0, 0, 0, fadeCount);
+        }
+
+        yield return new WaitForSeconds(1f);
+        StopCoroutine("FadeOutCoroutine");
+
         ShowDialogue();
     }
 
@@ -38,8 +61,8 @@ public class DialogueSystem : MonoBehaviour
     }
 
     private void StartDialogue(bool flag) {
-        sprite_character.gameObject.SetActive(flag);
         dialogue_box.gameObject.SetActive(flag);
+        button_ui.SetActive(flag);
         isDialogue = flag;
     }
 
@@ -52,12 +75,14 @@ public class DialogueSystem : MonoBehaviour
             // 캐릭터 이미지
             sprite_character.sprite = dialogues[count].image;
             
-
             // 텍스트 타이핑 효과
             string s = dialogues[count].dialogue;
             count++;
+
+            sentence.text = "";
             text = "";
 
+            yield return new WaitForSeconds(0.1f);
             for (int i = 0; i < s.Length; i++) {
                 text += s[i];
                 sentence.text = text;
