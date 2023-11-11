@@ -15,12 +15,13 @@ public class Player : MonoBehaviour
     public int life = 3;
     private bool attack = true;
 
-    //珥  議곗
+
     public float maxShotDelay;
     public float curShotDelay;
 
     private bool isDragActive = false;
-    //곗  
+
+
     private Vector2 touchStart;
 
 
@@ -39,18 +40,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // 留곗 대┃ 吏   
+
             touchStart = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            // 留곗 대┃ 吏 怨  留곗 移 李⑥대  怨
+            
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
-            // 罹由  대
+            
             MoveCharacter(delta);
 
-            // 留곗 대┃ 吏  
+            
             touchStart = Input.mousePosition;
         }
 

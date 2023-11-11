@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     public Image[] lifeImage;
+    public Sprite fulllife;
+    public Sprite emptylife;
     public GameObject gameOverSet;
 
     public GameObject GamoverUI;
@@ -45,14 +47,13 @@ public class GameManager : MonoBehaviour
 
     public void UpdateLifeIcon(int life)
     {
-        for (int index = 0; index < 3; index++)
+        foreach (Image img in lifeImage)
         {
-            lifeImage[index].color = new Color(1, 1, 1, 0);
-        }
-
-        for (int index = 0; index < life; index++)
-        {
-            lifeImage[index].color = new Color(1, 1, 1, 1);
+            img.sprite = emptylife;
+            for (int index = 0; index < life; index++)
+            {
+                lifeImage[index].sprite = fulllife;
+            }
         }
     }
 
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void GameRetry()
     {
-        Time.timeScale = 0f;
-        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }
