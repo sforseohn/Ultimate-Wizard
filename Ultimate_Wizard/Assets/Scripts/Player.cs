@@ -1,4 +1,4 @@
-using System.Collections;
+ç™¤using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,27 +10,41 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+    public bool isHurt;
 
     public GameManager manager;
 
     public int life = 3;
     private bool attack = true;
 
-    //ÃÑ¾Ë ¼Óµµ Á¶Á¤
+    //ç¥ÂÂ•ÂŒ Â†ÂÂ„ è­°ê³—Â•
+    public float maxShotDelay;
+    public float curShotDelay;
+
+
+
+    public GameManager manager;
+
+    public int life = 3;
+    private bool attack = true;
+
+    //ì´ì•Œ ì†ë„ ì¡°ì •
     public float maxShotDelay;
     public float curShotDelay;
 
 
 
     private bool isDragActive = false;
-    //ÅÍÄ¡ ½ÃÀÛÁ¡
+    //Â„ê³—Â˜ Â‹ÂœÂÂ‘ï¿½Â
     private Vector2 touchStart;
 
 
     public GameObject bulletObjA;
-    
+
 
     //Animator anim;
+
+
 
     // Update is called once per frame
     void Update()
@@ -40,18 +54,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡ ÀúÀå
+            // ï§ÂˆÂšê³—ÂŠ ÂëŒ€â”ƒÂ•Âœ ï§Â€ï¿½Â ï¿½Â€Â
             touchStart = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡°ú ÇöÀç ¸¶¿ì½º À§Ä¡ÀÇ Â÷ÀÌ¸¦ °è»ê
+            // ï§ÂˆÂšê³—ÂŠ ÂëŒ€â”ƒÂ•Âœ ï§Â€ï¿½Âæ€¨ Â˜Â„Â ï§ÂˆÂšê³—ÂŠ ÂœÂ„ç§»Â˜ÂÂ˜ ï§¡â‘¥ÂëŒ€ï¿½ æ€¨Â„Â‚
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
-            // Ä³¸¯ÅÍ ÀÌµ¿
+            // ï§¦Âç”±ï¿½Â„ ÂëŒ€Â™
             MoveCharacter(delta);
 
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡ ¾÷µ¥ÀÌÆ®
+            // ï§ÂˆÂšê³—ÂŠ ÂëŒ€â”ƒÂ•Âœ ï§Â€ï¿½Â Â—Â…Âê³—ÂëŒ„ÂŠ
             touchStart = Input.mousePosition;
         }
  
@@ -110,29 +124,32 @@ public class Player : MonoBehaviour
 
                      break;
 
-               /*  case "Left":
-                     isTouchLeft = true;
-
-                     break;
-
-                 case "Right":
-                     isTouchRight = true;
-
-                     break;*/
+               
 
              }
          }
 
          else if (collision.gameObject.tag == "MonsterBullet")
         {
-            attack = false;
+
+            Destroy(collision.gameObject);
+
+            if (isHurt)
+            {
+                return;
+            }
+            isHurt = true;
+
             life--;
             manager.UpdateLifeIcon(life);
-            manager.RespawnPlayer();// ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı, °ø°İx, 3ÃÊ ¹«Àû ÇÊ¿ä
-            manager.RespawnPlayerExe(attack);
+            manager.RespawnPlayer();// Â•Â‹Âˆï§Â”ÂëŒÂ…Â˜ ÂÑŠÂƒÂ, æ€¨ë“¦êº½x, 3ç¥Âˆ è‡¾ëŒÂ Â•Â„ÂšÂ”
+
+
+
             if (life ==0)
             {
                 Destroy(gameObject);
+                Time.timeScale = 0;
                 manager.GameOver();
             }
             else
@@ -140,12 +157,15 @@ public class Player : MonoBehaviour
                 manager.RespawnPlayer();
                 
             }
-            //gameObject.SetActive(false);
-              Destroy(collision.gameObject);
-        
+           
+
+
+
 
         }
-     }
+       
+    }
+
 
     void OnTriggerExit2D(Collider2D collision)
      {
