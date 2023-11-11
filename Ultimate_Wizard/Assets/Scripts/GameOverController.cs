@@ -19,6 +19,7 @@ public class GameOverController : MonoBehaviour
     }
 
     public void btnClicked(string scene_name) {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(scene_name);
     }
 }
