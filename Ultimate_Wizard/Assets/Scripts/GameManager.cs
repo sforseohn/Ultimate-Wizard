@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     public Image[] lifeImage;
+    //수정
+    public Sprite fulllife;
+    public Sprite emptylife;
+    //수정 끝
     public GameObject gameOverSet;
 
     public GameObject GamoverUI;
@@ -30,22 +34,22 @@ public class GameManager : MonoBehaviour
 
     public void UpdateLifeIcon(int life)
     {
-        for (int index = 0; index < 3; index++)
-        {
-            lifeImage[index].color = new Color(1, 1, 1, 0);
-        }
 
-        for (int index = 0; index < life; index++)
+        foreach(Image img in lifeImage)
         {
-            lifeImage[index].color = new Color(1, 1, 1, 1);
+            img.sprite = emptylife;
+
+            for(int index = 0; index < life; index++)
+            {
+                lifeImage[index].sprite = fulllife;
+            }
+
         }
+      
     }
 
     public void RespawnPlayer()
     {
-
-
-
         Invoke("RespawnPlayerExe", 3f);
         // player.transform.position = Vector3.down * 3.5;
         //player.SetActive(true);
@@ -53,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayerExe()
     {
-    
+
         Player playerLogic = player.GetComponent<Player>();
         playerLogic.isHurt = false;
     }
