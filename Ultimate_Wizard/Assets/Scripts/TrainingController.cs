@@ -23,18 +23,13 @@ public class TrainingController : MonoBehaviour
     private List<string> type_name = new List<string>() {"스피드", "공격", "체력"};
 
     // 결과 화면[SerializeField]
-    [SerializeField] private dummy dummy;
     [SerializeField] private GameObject EvolutionUI;
-    private textchange textChangeInstance;
-    Sprite selectedSpritebody;
-
-    [SerializeField] private Sprite Sonic;
-    [SerializeField] private Sprite Hercules;
-    [SerializeField] private Sprite Zombie;
+    [SerializeField] private Text text;
+    [SerializeField] private Image[] dummies;
 
     // 초기 세팅
     private void Awake() {
-        textChangeInstance = FindObjectOfType<textchange>();
+        // textChangeInstance = FindObjectOfType<textchange>();
         EvolutionUI.SetActive(false);
         ShowTrain(false);
     }
@@ -83,50 +78,34 @@ public class TrainingController : MonoBehaviour
         // 결과 반환
         int random = Random.Range(0, candidates.Count);
         Debug.Log($"result(0 스피드, 1 공격력, 2 체력): '{type_name[candidates[random]]}'");
-        
-        SelectDummy(candidates[random]);
-        textchange_(candidates[random]);
+
+        PlayerPrefs.SetInt("dum", candidates[random]);
+
+        Evolution_dummy(candidates[random]);
+        changeText(candidates[random]);
     }
 
-    public void textchange_(int candidates) {
-        dummy.changeText(candidates);
-    }
-
-    public void Evolution_dummy() {
-        EvolutionUI.SetActive(true);
-    }
-
-    public void SelectDummy(int candidates) {
-        selectedSpritebody = null;
-        PlayerPrefs.SetInt("dum", candidates);
-
-        switch (candidates){
+    private void changeText(int candidates)
+    {
+        switch (candidates)
+        {
             case 0:
-                selectedSpritebody = Sonic;
-                dummy.ChangeDummyImage(selectedSpritebody);
-                Evolution_dummy();
+                text.text = "더미가 소닉으로 진화했어!";
                 break;
 
             case 1:
-                selectedSpritebody = Hercules;
-                dummy.ChangeDummyImage(selectedSpritebody);
-                Evolution_dummy();
+                text.text = "더미가 헤라클레스로 진화했어!";
                 break;
 
             case 2:
-                selectedSpritebody = Zombie;
-                dummy.ChangeDummyImage(selectedSpritebody);
-                Evolution_dummy();
-                break;
-            
-            default:
-                selectedSpritebody = Sonic;
-                dummy.ChangeDummyImage(selectedSpritebody);
-                Evolution_dummy();
+                text.text = "더미가 좀비로 진화했어!";
                 break;
         }
+    }
 
-        dummy.GetComponent<dummy>().MoveToPosition(0f, 0f);
+    public void Evolution_dummy(int idx) {
+        dummies[idx].gameObject.SetActive(true);
+        EvolutionUI.SetActive(true);
     }
 
     public void NextScene(string scene_name) {

@@ -73,8 +73,6 @@ public class QuestionController : MonoBehaviour
         quest_box.gameObject.SetActive(flag);
         next_button.gameObject.SetActive(flag);
         button_ui.SetActive(flag);
-        sprite_character.gameObject.SetActive(flag);
-        sprite_dummy.gameObject.SetActive(flag);
     }
 
     // 다이얼로그 시작 (Question_Box)
