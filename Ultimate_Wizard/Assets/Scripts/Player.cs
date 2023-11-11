@@ -5,10 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    private float power;
     public bool isTouchTop;
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+
+    public GameManager manager;
+
+    public int life = 3;
+    private bool attack = true;
+
+    //총알 속도 조정
+    public float maxShotDelay;
+    public float curShotDelay;
+
+
 
     private bool isDragActive = false;
     //터치 시작점
@@ -24,6 +36,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
+        Reload();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -62,15 +75,25 @@ public class Player : MonoBehaviour
     }
 
 
+   
+
     void Fire()
     {
+        if ((curShotDelay < maxShotDelay)||(attack = false))
+            return;
+        
 
         GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
         rigid.AddForce(Vector2.left * 15, ForceMode2D.Impulse);
-        //위로 쏘는 부분 up 좌우로 할거면 여기를 바꿔 left로 바꿔보자
-    }
 
+        curShotDelay = 0;
+    
+    }
+    void Reload()
+    {
+        curShotDelay += Time.deltaTime;
+    }
 
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -99,6 +122,29 @@ public class Player : MonoBehaviour
 
              }
          }
+
+         else if (collision.gameObject.tag == "MonsterBullet")
+        {
+            attack = false;
+            life--;
+            manager.UpdateLifeIcon(life);
+            manager.RespawnPlayer();// 애니메이션 재생, 공격x, 3초 무적 필요
+            manager.RespawnPlayerExe(attack);
+            if (life ==0)
+            {
+                Destroy(gameObject);
+                manager.GameOver();
+            }
+            else
+            {
+                manager.RespawnPlayer();
+                
+            }
+            //gameObject.SetActive(false);
+              Destroy(collision.gameObject);
+        
+
+        }
      }
 
     void OnTriggerExit2D(Collider2D collision)
