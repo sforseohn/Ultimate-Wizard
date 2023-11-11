@@ -14,7 +14,7 @@ public class Main : MonoBehaviour
         Debug.Log("게임 시작");
         start_button.SetActive(false); // 버튼 클릭시 버튼 비활성화
         end_button.SetActive(false); // 버튼 클릭시 버튼 비활성화
-        StartCoroutine("FadeInCoroutine");
+        StartCoroutine(FadeInCoroutine());
     }
 
     IEnumerator FadeInCoroutine() {
@@ -29,6 +29,6 @@ public class Main : MonoBehaviour
 
         StopCoroutine("FadeInCoroutine");
         // 화면 전환
-        SceneManager.LoadScene("1_Story");
+        SceneManager.LoadScene("1_Story_first");
     }
 }
