@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+    public bool isHurt;
 
     public GameManager manager;
 
@@ -125,6 +126,10 @@ public class Player : MonoBehaviour
 
          else if (collision.gameObject.tag == "MonsterBullet")
         {
+            if (isHurt)
+                return;
+
+            isHurt = true;
             attack = false;
             life--;
             manager.UpdateLifeIcon(life);

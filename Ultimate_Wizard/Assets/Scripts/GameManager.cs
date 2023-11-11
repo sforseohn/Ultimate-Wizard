@@ -43,8 +43,11 @@ public class GameManager : MonoBehaviour
     public void RespawnPlayerExe(bool attack)
     {
         attack = true;
-       // player.transform.position = Vector3.down * 3.5;
-       // player.SetActive(true);
+        // player.transform.position = Vector3.down * 3.5;
+        // player.SetActive(true);
+
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.isHurt = false;
     }
 
     public void GameOver()
