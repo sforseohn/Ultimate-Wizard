@@ -15,21 +15,26 @@ public class Player : MonoBehaviour
     public int life = 3;
     private bool attack = true;
 
-    //珥  議곗
+
     public float maxShotDelay;
     public float curShotDelay;
 
     private bool isDragActive = false;
-    //곗  
+
+
     private Vector2 touchStart;
 
 
     public GameObject bulletObjA;
+    private UIManager ui;
 
 
     //Animator anim;
 
-
+    private void Start()
+    {
+       ui = GameObject.FindObjectOfType<UIManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,29 +44,23 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // 留곗 대┃ 吏   
+
             touchStart = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            // 留곗 대┃ 吏 怨  留곗 移 李⑥대  怨
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
-            // 罹由  대
             MoveCharacter(delta);
 
-            // 留곗 대┃ 吏  
             touchStart = Input.mousePosition;
         }
-
-
     }
 
     void MoveCharacter(Vector2 delta)
     {
         if (isTouchTop && delta.y > 0 || isTouchBottom && delta.y < 0)
         {
-
             speed = 0;
         }
         else
@@ -72,9 +71,6 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(0, delta.y * speed * Time.deltaTime, 0);
 
     }
-
-
-
 
     void Fire()
     {
@@ -108,9 +104,6 @@ public class Player : MonoBehaviour
                     isTouchBottom = true;
 
                     break;
-
-
-
             }
         }
 
@@ -126,12 +119,9 @@ public class Player : MonoBehaviour
             }
             isHurt = true;
 
-
             life--;
-            GameManager.instance.UpdateLifeIcon(life);
+            ui.UpdateLifeIcon(life);
             RespawnPlayer();
-
-
 
             if (life == 0)
             {
