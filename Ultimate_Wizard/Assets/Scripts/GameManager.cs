@@ -12,12 +12,18 @@ public class GameManager : MonoBehaviour
 
     public Image[] lifeImage;
     public GameObject gameOverSet;
+    public GameObject GamoverUI;
 
+    private void Awake()
+    {
+        gameOverSet.SetActive(false);
+        GamoverUI.SetActive(false);
+    }
 
     private void Update()
     {
 
-        
+
     }
 
     public void UpdateLifeIcon(int life)
@@ -35,16 +41,27 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        Invoke("RespawnPlayerExe",3f);
-       // player.transform.position = Vector3.down * 3.5;
-        player.SetActive(true);
+
+
+        Invoke("RespawnPlayerExe", 3f);
+        // player.transform.position = Vector3.down * 3.5;
+        //player.SetActive(true);
     }
 
-    public void RespawnPlayerExe(bool attack)
+    public void RespawnPlayerExe()
     {
+<<<<<<< Updated upstream
         attack = true;
+=======
+
+
+>>>>>>> Stashed changes
         // player.transform.position = Vector3.down * 3.5;
         // player.SetActive(true);
+
+        // player.transform.position = Vector3.down * 3.5;
+        // player.SetActive(true);
+
 
         Player playerLogic = player.GetComponent<Player>();
         playerLogic.isHurt = false;
@@ -53,10 +70,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverSet.SetActive(true);
+        GamoverUI.SetActive(true);
     }
 
     public void GameRetry()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(1);
     }
 }

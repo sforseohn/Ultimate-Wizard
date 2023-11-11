@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,21 +17,23 @@ public class Player : MonoBehaviour
     public int life = 3;
     private bool attack = true;
 
-    //ÃÑ¾Ë ¼Óµµ Á¶Á¤
+    //ì´ì•Œ ì†ë„ ì¡°ì •
     public float maxShotDelay;
     public float curShotDelay;
 
 
 
     private bool isDragActive = false;
-    //ÅÍÄ¡ ½ÃÀÛÁ¡
+    //í„°ì¹˜ ì‹œì‘ì 
     private Vector2 touchStart;
 
 
     public GameObject bulletObjA;
-    
+
 
     //Animator anim;
+
+
 
     // Update is called once per frame
     void Update()
@@ -41,18 +43,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡ ÀúÀå
+            // ë§ˆìš°ìŠ¤ í´ë¦­í•œ ì§€ì  ì €ì¥
             touchStart = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡°ú ÇöÀç ¸¶¿ì½º À§Ä¡ÀÇ Â÷ÀÌ¸¦ °è»ê
+            // ë§ˆìš°ìŠ¤ í´ë¦­í•œ ì§€ì ê³¼ í˜„ì¬ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì˜ ì°¨ì´ë¥¼ ê³„ì‚°
             Vector2 delta = (Vector2)Input.mousePosition - touchStart;
 
-            // Ä³¸¯ÅÍ ÀÌµ¿
+            // ìºë¦­í„° ì´ë™
             MoveCharacter(delta);
 
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ÁöÁ¡ ¾÷µ¥ÀÌÆ®
+            // ë§ˆìš°ìŠ¤ í´ë¦­í•œ ì§€ì  ì—…ë°ì´íŠ¸
             touchStart = Input.mousePosition;
         }
  
@@ -111,33 +113,38 @@ public class Player : MonoBehaviour
 
                      break;
 
-               /*  case "Left":
-                     isTouchLeft = true;
-
-                     break;
-
-                 case "Right":
-                     isTouchRight = true;
-
-                     break;*/
+               
 
              }
          }
 
          else if (collision.gameObject.tag == "MonsterBullet")
         {
-            if (isHurt)
-                return;
+<<<<<<< Updated upstream
+=======
+            Destroy(collision.gameObject);
 
+>>>>>>> Stashed changes
+            if (isHurt)
+            {
+                return;
+            }
             isHurt = true;
+<<<<<<< Updated upstream
             attack = false;
+=======
+
+>>>>>>> Stashed changes
             life--;
             manager.UpdateLifeIcon(life);
-            manager.RespawnPlayer();// ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı, °ø°İx, 3ÃÊ ¹«Àû ÇÊ¿ä
-            manager.RespawnPlayerExe(attack);
+            manager.RespawnPlayer();// ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ, ê³µê²©x, 3ì´ˆ ë¬´ì  í•„ìš”
+
+
+
             if (life ==0)
             {
                 Destroy(gameObject);
+                Time.timeScale = 0;
                 manager.GameOver();
             }
             else
@@ -145,12 +152,13 @@ public class Player : MonoBehaviour
                 manager.RespawnPlayer();
                 
             }
-            //gameObject.SetActive(false);
-              Destroy(collision.gameObject);
-        
+           
+
+
 
         }
-     }
+       
+    }
 
     void OnTriggerExit2D(Collider2D collision)
      {
