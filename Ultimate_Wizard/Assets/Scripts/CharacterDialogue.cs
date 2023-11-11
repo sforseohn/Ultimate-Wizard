@@ -22,6 +22,8 @@ public class CharacterDialogue : MonoBehaviour
 
     [SerializeField] private Character[] dialogues;
 
+    [SerializeField] private GameObject SoundManager;
+
     public string text = "";
 
     // 초기 세팅
@@ -156,6 +158,9 @@ public class CharacterDialogue : MonoBehaviour
         }
 
         StopCoroutine("FadeInCoroutine");
+        if(scene_name == "2_DummySelect" || scene_name == "0_Main") {
+            SoundManager.GetComponent<SoundManager>().DestroyBgm();
+        }
         // 화면 전환
         SceneManager.LoadScene(scene_name);
     }

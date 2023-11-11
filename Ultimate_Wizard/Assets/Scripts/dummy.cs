@@ -14,7 +14,7 @@ public class dummy : MonoBehaviour
     //public SpriteRenderer dummyRenderer;
     [SerializeField]
     private Text text;
-    private Vector2 initialPosition;  // ÃÊ±â À§Ä¡ ÀúÀå º¯¼ö
+    private Vector2 initialPosition;  // ï¿½Ê±ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     
     void Start()
@@ -28,15 +28,15 @@ public class dummy : MonoBehaviour
         switch (candidates)
         {
             case 0:
-                text.text = "´õ¹Ì°¡ ¼Ò´ĞÀÌ µÇ¾ú¾î!";
+                text.text = "ë”ë¯¸ê°€ ì†Œë‹‰ìœ¼ë¡œ ì§„í™”í–ˆì–´!";
                 break;
 
             case 1:
-                text.text = "´õ¹Ì°¡ Çì¶óÅ¬·¹½º°¡ µÇ¾ú¾î!";
+                text.text = "ë”ë¯¸ê°€ í—¤ë¼í´ë ˆìŠ¤ë¡œ ì§„í™”í–ˆì–´!";
                 break;
 
             case 2:
-                text.text = "´õ¹Ì°¡ Á»ºñ°¡ µÇ¾ú¾î!";
+                text.text = "ë”ë¯¸ê°€ ì¢€ë¹„ë¡œ ì§„í™”í–ˆì–´!";
                 break;
         }
 
