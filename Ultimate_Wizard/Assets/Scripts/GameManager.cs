@@ -18,16 +18,14 @@ public class GameManager : MonoBehaviour
     public Image[] lifeImage;
     public Sprite fulllife;
     public Sprite emptylife;
-    public Sprite Sonic_h;
-    public Sprite Hercules_h;
-    public Sprite Zombie_h;
+
     public Sprite Sonic;
     public Sprite Hercules;
     public Sprite Zombie;
 
     //   public GameObject gameOverSet;
 
-    Sprite selectedSprite = null;
+    //Sprite selectedSprite = null;
 
     Sprite selectedSpritebody = null;
 
@@ -36,6 +34,8 @@ public class GameManager : MonoBehaviour
     public GameObject EvolutionUI;
 
     public static GameManager instance = null;
+
+    public int dum = 0;
 
 
     private void Awake()
@@ -72,13 +72,13 @@ public class GameManager : MonoBehaviour
     }
     public void SelectDummy(int candidates)
     {
-        player = GameObject.FindObjectOfType<Player>();
+        dum = candidates;
 
         switch (candidates)
             {
 
             case 0:
-                selectedSprite = Sonic_h;
+                //selectedSprite = Sonic_h;
                 selectedSpritebody = Sonic;
                 dummy.ChangeDummyImage(selectedSpritebody);
                 Evolution_dummy();
@@ -86,14 +86,14 @@ public class GameManager : MonoBehaviour
 
                 break;
             case 1:
-                selectedSprite = Hercules_h;
+               // selectedSprite = Hercules_h;
                 selectedSpritebody = Hercules;
             //    player.GetComponent<Player>().power = 2.0f;
                 dummy.ChangeDummyImage(selectedSpritebody);
                 Evolution_dummy();
                 break;
             case 2:
-                selectedSprite = Zombie_h;
+               // selectedSprite = Zombie_h;
                 selectedSpritebody = Zombie;
                 dummy.ChangeDummyImage(selectedSpritebody);
                 Evolution_dummy();
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
                 break;
             
             default:
-                selectedSprite = Sonic_h;
+               // selectedSprite = Sonic_h;
                 selectedSpritebody = Sonic;
                 dummy.ChangeDummyImage(selectedSpritebody);
                 Evolution_dummy();
@@ -112,13 +112,13 @@ public class GameManager : MonoBehaviour
 
         dummy.GetComponent<dummy>().MoveToPosition(0f, 0f);
 
-        if (selectedSprite != null)
+        /*if (selectedSprite != null)
         {
 
 
             // 플레이어의 이미지 변경
-          //  player.GetComponent<Image>().sprite = selectedSprite;
-        }
+           // player.GetComponent<Image>().sprite = selectedSprite;
+        }*/
     }
 
     public void GameClear()
@@ -134,6 +134,8 @@ public class GameManager : MonoBehaviour
 
     public void Letsgo(string scene_name)
     {
+
+       
         SceneManager.LoadScene(scene_name);
     }
 
