@@ -36,6 +36,8 @@ public class Monster : MonoBehaviour
     private float duration = 0f;
     private int curPattern = 0;
 
+    private bool isWin = false;
+
     void Start()
     {
 
@@ -43,9 +45,10 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        if (health <= 0) // 플레이어의 승리
+        if (health <= 0 && !isWin) // 플레이어의 승리
         {
             Win();
+            isWin = true;
         }
 
         // 공격 패턴 변경

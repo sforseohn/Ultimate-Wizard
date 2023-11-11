@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     public int life = 3;
     private bool attack = true;
+    private int dum = -1;
 
     //public GameObject dummyHead;
     Sprite selectedSprite = null;
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
 
     public GameObject bulletObjA;
     private UIManager ui;
+
+    [SerializeField] private AudioSource bgm;
+    [SerializeField] private GameObject SoundManager;
 
     //Animator anim;
 
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
     }
 
     void facechange() {
-        int dum = PlayerPrefs.GetInt("dum");
+        dum = PlayerPrefs.GetInt("dum");
         switch (dum){
             case 0:
                 selectedSprite = Sonic_h;
@@ -133,17 +137,24 @@ public class Player : MonoBehaviour
             isHurt = true;
 
             life--;
+            bgm.Play();
             ui.UpdateLifeIcon(life);
             RespawnPlayer();
 
             if (life == 0) {
-                Destroy(this.gameObject);
-                Time.timeScale = 0;
+                bgm.Play();
+                Invoke("DestroyObject", 3f);
+                SoundManager.GetComponent<SoundManager>().DestroyBgm();
                 GameManager.instance.GameOver();
             } else {
                 RespawnPlayer();
             }
         }
+    }
+
+    private void DestroyObject() {
+        Destroy(this.gameObject);
+        Time.timeScale = 0;
     }
 
     public void RespawnPlayer() {

@@ -6,14 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    public Player player;
-
-    public Image[] lifeImage;
-    public Sprite fulllife;
-    public Sprite emptylife;
-
     public static GameManager instance = null;
+    [SerializeField] private AudioSource bgm;
 
     private void Awake() {
         if (instance == null) {
@@ -33,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver() {
+        bgm.Play();
         Time.timeScale = 0f;
         UIManager ui = GameObject.FindObjectOfType<UIManager>();
         ui.ShowGameOverUI();        
