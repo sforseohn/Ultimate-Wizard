@@ -14,8 +14,8 @@ public class UIManager : MonoBehaviour
     private int dum = -1;
 
     // Start is called before the first frame update
-    void Awake()
-    {
+    void Awake() {
+        lifeImage[3].gameObject.SetActive(false);
         dum = PlayerPrefs.GetInt("dum");
         // 좀비인 경우
         if(dum == 2) {

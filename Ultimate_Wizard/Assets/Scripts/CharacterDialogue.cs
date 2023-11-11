@@ -159,7 +159,10 @@ public class CharacterDialogue : MonoBehaviour
 
         StopCoroutine("FadeInCoroutine");
         if(scene_name == "2_DummySelect" || scene_name == "0_Main") {
-            SoundManager.GetComponent<SoundManager>().DestroyBgm();
+            SoundManager[] soundManagers = FindObjectsOfType<SoundManager>();
+            if (soundManagers.Length != 0) {
+                SoundManager.GetComponent<SoundManager>().DestroyBgm();
+            }
         }
         // 화면 전환
         SceneManager.LoadScene(scene_name);
