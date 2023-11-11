@@ -12,21 +12,12 @@ public class Player : MonoBehaviour
     public bool isTouchRight;
     public bool isHurt;
 
-    public GameManager manager;
-
     public int life = 3;
     private bool attack = true;
 
     //珥  議곗
     public float maxShotDelay;
     public float curShotDelay;
-
-
-
-
-
-
-
 
     private bool isDragActive = false;
     //곗 �
@@ -137,20 +128,20 @@ public class Player : MonoBehaviour
 
 
             life--;
-            manager.UpdateLifeIcon(life);
-            manager.RespawnPlayer();
+            GameManager.instance.UpdateLifeIcon(life);
+            GameManager.instance.RespawnPlayer();
 
 
 
             if (life ==0)
             {
-                Destroy(gameObject);
+                Destroy(this.gameObject);
                 Time.timeScale = 0;
-                manager.GameOver();
+                GameManager.instance.GameOver();
             }
             else
             {
-                manager.RespawnPlayer();
+                GameManager.instance.RespawnPlayer();
                 
             }
            

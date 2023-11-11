@@ -5,7 +5,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField]
-    private float health = 1000f;
+    private float health = 1f;
 
     [SerializeField]
     private float delay = 0.2f; // 기준 딜레이
@@ -249,10 +249,11 @@ public class Monster : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            Destroy(collision.gameObject);
             Minus();
         }
     }
@@ -260,13 +261,13 @@ public class Monster : MonoBehaviour
 
     void Minus()
     {
-        // 플레이어로부터 오는 공격 처리
+        // 플레이어로부터 오는 공격
         health -= 1f;
     }
 
     void Win()
     {
-
+        Debug.Log("승리");
     }
     
  }
