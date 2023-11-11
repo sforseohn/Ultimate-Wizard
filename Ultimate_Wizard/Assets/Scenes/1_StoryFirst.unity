@@ -936,8 +936,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240510398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -700, y: -160, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 0}
+  m_LocalPosition: {x: -670, y: -170, z: 0}
+  m_LocalScale: {x: 110, y: 110, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1735765236}
@@ -984,12 +984,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 02b5ae51b6f814a11aa61e1725741c51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7069cd5c5a5f7423e88bdc4a9c6f44c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.04, y: 18.37}
+  m_Size: {x: 5.44, y: 10.11}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1855,17 +1855,17 @@ MonoBehaviour:
       \uB300\uD55C \uC774\uC57C\uAE30\uB294 \uC815\uB9D0 \uAC10\uBA85\uAE4A\uC5C8\uC5B4.\n\uADF8\uB807\uAC8C
       \uD63C\uB780\uC2A4\uB7FD\uB358 \uB9C8\uBC95 \uD559\uAD50\uB97C \uD3C9\uC815\uD558\uC2DC\uB2E4\uB2C8..\n\uB098\uB3C4
       \uADF8\uB7F0 \uB9C8\uBC95\uC0AC\uAC00 \uB420 \uC218 \uC788\uC744\uAE4C?"
-    image: {fileID: 21300000, guid: 02b5ae51b6f814a11aa61e1725741c51, type: 3}
+    image: {fileID: 21300000, guid: 7069cd5c5a5f7423e88bdc4a9c6f44c7, type: 3}
   - name: "\uBE0C\uB8E8\uD2C0\uB9AC"
     dialogue: "\uD558\uC9C0\uB9CC \uC9C0\uAE08\uC758 \uB098\uB294 \uB9C8\uBC95 \uC2E4\uB825\uC774
       \uBD80\uC871\uD574\uB3C4 \uD55C\uCC38 \uBD80\uC871\uD55C\uAC78..\n\uAC8C\uB2E4\uAC00
       \uD559\uAD50\uB294 \uCEE4\uB155 \uD559\uAE09\uC5D0\uC11C \uC870\uCC28 \uB0A0
       \uC54C\uC544\uBCF4\uB294 \uC0AC\uB78C\uC774 \uC5C6\uC796\uC544."
-    image: {fileID: 21300000, guid: 02b5ae51b6f814a11aa61e1725741c51, type: 3}
+    image: {fileID: 21300000, guid: 7069cd5c5a5f7423e88bdc4a9c6f44c7, type: 3}
   - name: "\uBE0C\uB8E8\uD2C0\uB9AC"
     dialogue: "\uD558\uC544, \uC5B8\uC81C\uCBE4 \uB098\uB3C4 \uB9C8\uBC95 \uC2E4\uB825\uC73C\uB85C
       \uC778\uC815\uBC1B\uB294 \uB0A0\uC774 \uC624\uB824\uB098."
-    image: {fileID: 21300000, guid: 02b5ae51b6f814a11aa61e1725741c51, type: 3}
+    image: {fileID: 21300000, guid: 7069cd5c5a5f7423e88bdc4a9c6f44c7, type: 3}
   SoundManager: {fileID: 0}
   text: 
 --- !u!4 &2106332153
