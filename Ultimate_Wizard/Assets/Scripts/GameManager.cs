@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     [SerializeField]
     public Player player;
 
@@ -15,8 +14,6 @@ public class GameManager : MonoBehaviour
     public Sprite emptylife;
 
     public static GameManager instance = null;
-
-    public int dum = 0;
 
     private void Awake() {
         if (instance == null) {
@@ -44,9 +41,5 @@ public class GameManager : MonoBehaviour
     public void Letsgo(string scene_name) {
         Time.timeScale = 1f;
         SceneManager.LoadScene(scene_name);
-    }
-
-    public void setDum(int dum) {
-        this.dum = dum;
     }
 }
