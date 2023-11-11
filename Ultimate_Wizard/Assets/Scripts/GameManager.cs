@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
         foreach (Image img in lifeImage)
         {
-            
             img.sprite = emptylife;
             for (int index = 0; index < life; index++)
             {
