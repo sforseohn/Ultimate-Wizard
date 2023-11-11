@@ -57,7 +57,7 @@ public class TrainingController : MonoBehaviour
         types[type]++;
     }
 
-    private int DummyResult() {
+    private void DummyResult() {
         // 최댓값 받기
         int maxVal = types.Max();
 
@@ -71,7 +71,11 @@ public class TrainingController : MonoBehaviour
         // 결과 반환
         int random = Random.Range(0, candidates.Count);
         Debug.Log($"result(0 스피드, 1 공격력, 2 체력): '{type_name[candidates[random]]}'");
-        return candidates[random];
+        
+        GameManager.instance.SelectDummy(candidates[random]);
+        GameManager.instance.textchange_(candidates[random]);
+
+
     }
 
     public void Retry() {
