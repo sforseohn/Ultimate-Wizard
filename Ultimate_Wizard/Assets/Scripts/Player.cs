@@ -1,4 +1,4 @@
-using System.Collections;
+癤using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
             // 罹由� 대
             MoveCharacter(delta);
 
-            // 留곗 대┃ 吏� 
+
             touchStart = Input.mousePosition;
         }
  
@@ -127,17 +127,21 @@ public class Player : MonoBehaviour
             isHurt = true;
 
 
+
             life--;
             GameManager.instance.UpdateLifeIcon(life);
             GameManager.instance.RespawnPlayer();
 
 
 
+
             if (life ==0)
             {
+
                 Destroy(this.gameObject);
                 Time.timeScale = 0;
                 GameManager.instance.GameOver();
+
             }
             else
             {
