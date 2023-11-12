@@ -9,7 +9,12 @@ public class EndingController : MonoBehaviour
     [SerializeField] private Image image; // 페이드아웃 효과에 쓰일 이미지
     [SerializeField] private float delay_time = 1.5f;
 
+
+    [SerializeField] private GameObject start; // 시작 배경
+    [SerializeField] private GameObject end; // 끝 배경
+
     private void Awake() {
+        end.SetActive(false);
         image.gameObject.SetActive(true);
     }
 
@@ -30,13 +35,21 @@ public class EndingController : MonoBehaviour
             image.color = new Color(0, 0, 0, fadeCount);
         }
 
+        // 애니메이션 끝날 때 까지 기다림
+        yield return new WaitForEndOfFrame();
+        start.SetActive(false);
+        end.SetActive(true);
+
+
+        // 애니메이션 딜레이
         yield return new WaitForSeconds(delay_time);
         Debug.Log("End");
         End();
         StopCoroutine("FadeOutCoroutine");
     }
 
-    public void End() {
+    public void End()
+    {
         SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("0_Main");
     }
