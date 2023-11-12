@@ -125,6 +125,7 @@ public class NarratorDialogue : MonoBehaviour
     }
 
     public void End() {
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("0_Main");
     }
 

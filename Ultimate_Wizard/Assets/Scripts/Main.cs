@@ -9,9 +9,16 @@ public class Main : MonoBehaviour
     [SerializeField] private Image image; // 페이드아웃 효과에 쓰일 이미지
     [SerializeField] private GameObject start_button; // 시작 버튼
     [SerializeField] private GameObject end_button; // 시작 버튼
+    [SerializeField] private GameObject title;
+
+    private void Start() {
+        SoundManager.instance.BgmPlay(4);
+    }
 
     public void FadeButton() {
         Debug.Log("게임 시작");
+        SoundManager.instance.DestroyBgm();
+        title.SetActive(false);
         start_button.SetActive(false); // 버튼 클릭시 버튼 비활성화
         end_button.SetActive(false); // 버튼 클릭시 버튼 비활성화
         StartCoroutine("FadeOutCoroutine");
