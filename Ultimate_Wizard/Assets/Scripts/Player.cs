@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed=0.2f;
+    public float speed=0.5f;
     public float power;
     public bool isTouchTop;
     public bool isTouchBottom;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float shootspeed=4f;
 
     public int life = 3;
-    private bool attack = true;
+
     private int dum = -1;
 
     //public GameObject dummyHead;
@@ -33,6 +33,13 @@ public class Player : MonoBehaviour
     public GameObject bulletH;
     public GameObject bulletZ;
     private UIManager ui;
+    //Blinking
+    public float blinkTimer = 0.0f;
+    public float blinkDuration = 0.2f;
+    public float blinkTotalTime = 0.0f;
+    public float blinkTotalDuration = 0.2f;
+    public bool startBlinking = false;
+
 
     [SerializeField] private AudioSource bgm;
     [SerializeField] private GameObject SoundManager;
@@ -81,6 +88,7 @@ public class Player : MonoBehaviour
                 selectedSprite = Sonic_h;
                 ChangeDummyface(selectedSprite);
                 maxShotDelay = 0.2f;
+                speed = 0.5f;
                 power = 1;
                 break;
 
@@ -89,6 +97,7 @@ public class Player : MonoBehaviour
                 ChangeDummyface(selectedSprite);
                 maxShotDelay = 0.4f;
                 power =2;
+                speed = 0.5f;
                 break;
                 
             case 2:
@@ -96,6 +105,7 @@ public class Player : MonoBehaviour
                 ChangeDummyface(selectedSprite);
                 maxShotDelay = 0.2f;
                 power = 1;
+                speed = 0.5f;
                 life = 4;
                 break;
 
@@ -125,9 +135,10 @@ public class Player : MonoBehaviour
 
     void FireH()
     {
-        if ((curShotDelay < maxShotDelay) || (attack = false))
+        if ((curShotDelay < maxShotDelay) || (isHurt == true))
+        {
             return;
-
+        }
 
         GameObject bullet = Instantiate(bulletH, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -137,9 +148,10 @@ public class Player : MonoBehaviour
     }
     void FireZ()
     {
-        if ((curShotDelay < maxShotDelay) || (attack = false))
+        if ((curShotDelay < maxShotDelay) || (isHurt == true))
+        {
             return;
-
+        }
 
         GameObject bullet = Instantiate(bulletZ, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -148,11 +160,27 @@ public class Player : MonoBehaviour
         curShotDelay = 0;
     }
 
+   
+ 
 
-    void FireS() {
-        if ((curShotDelay < maxShotDelay) || (attack = false))
+IEnumerator BlinkCoroutine(int blinkCount)
+{
+    startBlinking = true;
+
+    for (int i = 0; i < blinkCount; i++)
+    {
+        yield return new WaitForSecondsRealtime(blinkDuration); // Realtime을 사용하여 timescale에 영향 받지 않도록 함
+        GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
+    }
+
+    startBlinking = false;
+    GetComponent<SpriteRenderer>().enabled = true;
+}
+void FireS() {
+        if ((curShotDelay < maxShotDelay) ||(isHurt == true))
+        {
             return;
-        
+        }
 
         GameObject bullet = Instantiate(bulletS, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -182,11 +210,17 @@ public class Player : MonoBehaviour
             if (isHurt) {
                 return;
             }
-            isHurt = true;
+            
 
             life--;
             bgm.Play();
             ui.UpdateLifeIcon(life);
+            if (isHurt == false)
+            {
+                StartCoroutine(BlinkCoroutine(10)); // 5번 깜빡임
+            }
+            isHurt = true;
+
             RespawnPlayer();
 
             if (life == 0) {
@@ -206,14 +240,17 @@ public class Player : MonoBehaviour
     }
 
     public void RespawnPlayer() {
-        Invoke("RespawnPlayerExe", 3f);
+
+        Invoke("RespawnPlayerExe", 2f);
         // player.transform.position = Vector3.down * 3.5;
         //player.SetActive(true);
     }
 
     public void RespawnPlayerExe() {
+
         Player playerLogic = gameObject.GetComponent<Player>();
         playerLogic.isHurt = false;
+
     }
 
     void OnTriggerExit2D(Collider2D collision) {
