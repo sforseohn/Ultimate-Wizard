@@ -36,7 +36,7 @@ public class QuestionController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        Debug.Log("3_Dummy 트레이닝 시작");
+        // Debug.Log("3_Dummy 트레이닝 시작");
 
         // 배경 이미지 페이드 인 효과
         StartCoroutine("FadeInCoroutine");
