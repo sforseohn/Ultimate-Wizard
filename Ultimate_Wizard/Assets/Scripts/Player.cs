@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
-    public float power = 1.0f;
+    public float speed=0.2f;
+    public float power;
     public bool isTouchTop;
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
     public bool isHurt;
+    public float shootspeed=4f;
 
     public int life = 3;
     private bool attack = true;
@@ -28,7 +29,9 @@ public class Player : MonoBehaviour
 
     private Vector2 touchStart;
 
-    public GameObject bulletObjA;
+    public GameObject bulletS;
+    public GameObject bulletH;
+    public GameObject bulletZ;
     private UIManager ui;
 
     [SerializeField] private AudioSource bgm;
@@ -42,7 +45,21 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Fire();
+
+        if (dum == 0) {
+            FireS();
+        }
+
+        else if (dum == 1)
+        {
+            FireH();
+        }
+
+        else if (dum == 2)
+        {
+            FireZ();
+        }
+
         Reload();
 
         if (Input.GetMouseButtonDown(0)) {
@@ -63,25 +80,29 @@ public class Player : MonoBehaviour
                 selectedSprite = Sonic_h;
                 ChangeDummyface(selectedSprite);
                 maxShotDelay = 0.2f;
+                power = 1;
                 break;
 
             case 1:
                 selectedSprite = Hercules_h;
                 ChangeDummyface(selectedSprite);
+                maxShotDelay = 0.4f;
                 power =2;
                 break;
                 
             case 2:
                 selectedSprite = Zombie_h;
                 ChangeDummyface(selectedSprite);
+                maxShotDelay = 0.2f;
+                power = 1;
                 life = 4;
                 break;
 
-            default:
+            /*default:
                 selectedSprite = Sonic_h;
                 ChangeDummyface(selectedSprite);
                 speed = 1.5f;
-                break;
+                break;*/
         }
     }
 
@@ -101,13 +122,40 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(0, delta.y * newSpeed * Time.deltaTime, 0);
     }
 
-    void Fire() {
+    void FireH()
+    {
         if ((curShotDelay < maxShotDelay) || (attack = false))
             return;
 
-        GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+
+        GameObject bullet = Instantiate(bulletH, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        rigid.AddForce(Vector2.left * power, ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.left * shootspeed, ForceMode2D.Impulse);
+
+        curShotDelay = 0;
+    }
+    void FireZ()
+    {
+        if ((curShotDelay < maxShotDelay) || (attack = false))
+            return;
+
+
+        GameObject bullet = Instantiate(bulletZ, transform.position, transform.rotation);
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.left * shootspeed, ForceMode2D.Impulse);
+
+        curShotDelay = 0;
+    }
+
+
+    void FireS() {
+        if ((curShotDelay < maxShotDelay) || (attack = false))
+            return;
+        
+
+        GameObject bullet = Instantiate(bulletS, transform.position, transform.rotation);
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.left * shootspeed, ForceMode2D.Impulse);
 
         curShotDelay = 0;
     }
