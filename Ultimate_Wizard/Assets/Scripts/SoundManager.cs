@@ -43,7 +43,8 @@ public class SoundManager : MonoBehaviour
     }
 
     public void DestroyBgm() {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        bgm.Stop();
     }
 
     public void Clap(AudioSource audio) {
