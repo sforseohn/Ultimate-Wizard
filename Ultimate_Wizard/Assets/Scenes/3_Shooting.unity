@@ -1306,8 +1306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d0b9d5134f9fa4e917521cb3b31bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
+  maxHealth: 200
+  health: 200
   delay: 0.5
   curDelay: 0
   bullet: {fileID: 37806194603915000, guid: dd1dae7dcbe3db242b669bb04011dda3, type: 3}
