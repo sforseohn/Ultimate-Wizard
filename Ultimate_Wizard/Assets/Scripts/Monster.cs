@@ -27,6 +27,9 @@ public class Monster : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private AudioSource bgm;
+
     private bool canShoot = true;
     private float cooldown = 5f; // 5초 동안 공격 X
 
@@ -302,6 +305,7 @@ public class Monster : MonoBehaviour
         GameManager.instance.GameClear();
 
         // 몬스터 죽었을 때 깜빡이기 시작
+        bgm.Play();
         StartCoroutine(BlinkCoroutine(6)); // 6번 깜빡임
     }
 
