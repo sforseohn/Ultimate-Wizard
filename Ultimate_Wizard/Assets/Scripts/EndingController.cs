@@ -8,7 +8,6 @@ public class EndingController : MonoBehaviour
     [SerializeField] private AudioSource clap;
     [SerializeField] private Image image; // 페이드아웃 효과에 쓰일 이미지
     [SerializeField] private float delay_time = 1.5f;
-    [SerializeField] private GameObject SoundManager;
 
     private void Awake() {
         image.gameObject.SetActive(true);
@@ -38,7 +37,7 @@ public class EndingController : MonoBehaviour
     }
 
     public void End() {
-        SoundManager.GetComponent<SoundManager>().DestroyBgm();
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("0_Main");
     }
 }
