@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
         }
 
         // 화면 전환
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("4_Ending_Narr");
         Debug.Log("씬 로딩");
     }
