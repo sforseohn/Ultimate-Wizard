@@ -11,6 +11,7 @@ TagManager:
   - MonsterBullet
   - Main
   - Re
+  - PlayerBulletH
   layers:
   - Default
   - TransparentFX

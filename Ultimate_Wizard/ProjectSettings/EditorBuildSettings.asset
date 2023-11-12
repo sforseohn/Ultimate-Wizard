@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/4_Ending.unity
     guid: e55d80ff7735a4554a27ad746ba70f98
+  - enabled: 1
+    path: Assets/Scenes/3_Shooting_playertype.unity
+    guid: da9b51473a9da9446b943aca5e55184c
   m_configObjects: {}

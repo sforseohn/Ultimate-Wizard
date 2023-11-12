@@ -285,12 +285,23 @@ public class Monster : MonoBehaviour
             Destroy(collision.gameObject);
             Minus();
         }
+        else if (collision.gameObject.CompareTag("PlayerBulletH"))
+            {
+            Debug.Log(health);
+            Destroy(collision.gameObject);
+            Minus2();
+        }
     }
 
     void Minus()
     {
         // 플레이어로부터 오는 공격
         health -= 1f;
+    }
+
+    void Minus2()
+    {
+        health -= 2f;
     }
 
     void Win()
