@@ -29,6 +29,7 @@ public class QuestionController : MonoBehaviour
 
     // 초기 세팅
     private void Awake() {
+        Debug.Log("3_Dummy 트레이닝 시작");
         image.gameObject.SetActive(true);
         ShowQuestion(false);
     }
