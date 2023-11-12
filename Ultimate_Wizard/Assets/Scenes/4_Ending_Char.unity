@@ -181,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba236c6b290124a8fa0f0d1c8c1e013c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48dccda3892274405b056740fefde515, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd2492b9b48db4f66997fbd345d06d79, type: 3}
+    m_Font: {fileID: 12800000, guid: 26fbb6f205b704e588ba43859bd9803d, type: 3}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 1
@@ -910,9 +910,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2dfcc8ff4e0eb4336b91880989322dea, type: 3}
+    m_Font: {fileID: 12800000, guid: 5d2c94c03582b424f91fcc10261ebc29, type: 3}
     m_FontSize: 45
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 230
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   dialogues:
   - name: "\uD559\uAD50 \uAD50\uC7A5"
     dialogue: "\uC2DC\uD5D8\uC5D0 \uCC38\uAC00\uD558\uC2E0 \uD559\uC0DD \uC5EC\uB7EC\uBD84
-      \uBAA8\uB450 \uC218\uACE0 \uB9CE\uC73C\uC168\uC2B5\uB2C8\uB2E4. \uC0DD\uAC01\uBCF4\uB2E4
+      \uBAA8\uB450 \uC218\uACE0 \uB9CE\uC73C\uC168\uC2B5\uB2C8\uB2E4.\n\uC0DD\uAC01\uBCF4\uB2E4
       \uB9C8\uACC4\uC758 \uBAAC\uC2A4\uD130\uAC00 \uAC15\uB825\uD558\uC9C0\uC694?"
     image: {fileID: 21300000, guid: ceef59f97e3d84e4cb2cf37d2d919e5f, type: 3}
   - name: "\uD559\uAD50 \uAD50\uC7A5"
