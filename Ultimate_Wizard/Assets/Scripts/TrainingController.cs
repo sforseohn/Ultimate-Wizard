@@ -110,10 +110,13 @@ public class TrainingController : MonoBehaviour
 
     public void NextScene(string scene_name) {
         // 화면 전환
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene(scene_name);
     }
 
     public void Retry() {
+        SoundManager.instance.DestroyBgm();
+        SceneManager.LoadScene("2_DummySelect");
         ShowTrain(false);
     }
 }

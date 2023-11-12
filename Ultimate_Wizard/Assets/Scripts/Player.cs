@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     private UIManager ui;
 
     [SerializeField] private AudioSource bgm;
-    [SerializeField] private GameObject SoundManager;
 
     //Animator anim;
 
@@ -144,7 +143,7 @@ public class Player : MonoBehaviour
             if (life == 0) {
                 bgm.Play();
                 Invoke("DestroyObject", 3f);
-                SoundManager.GetComponent<SoundManager>().DestroyBgm();
+                SoundManager.instance.DestroyBgm();
                 GameManager.instance.GameOver();
             } else {
                 RespawnPlayer();

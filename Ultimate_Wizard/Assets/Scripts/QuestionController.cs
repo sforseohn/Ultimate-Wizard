@@ -18,22 +18,16 @@ public class QuestionController : MonoBehaviour
     // 상단 건너뛰기 & 끝내기 버튼
     [SerializeField] private GameObject button_ui;
 
-    // 캐릭터 & 더미
-    [SerializeField] private SpriteRenderer sprite_character;
-    [SerializeField] private SpriteRenderer sprite_dummy;
-
     // 출력 내용
     [SerializeField] private Character[] questions;
     private string text = "";
     private int count = 0; // 대화 얼마나 진행되었는지
 
-    // 사운드
-    [SerializeField] private AudioSource bgm;
-
     // 초기 세팅
     private void Awake() {
         Debug.Log("3_Dummy 트레이닝 시작");
-        SoundManager.instance.SetBgm(bgm);
+        // Start Dummy Bgm
+        SoundManager.instance.BgmPlay(1);
         image.gameObject.SetActive(true);
         ShowQuestion(false);
     }
@@ -133,6 +127,7 @@ public class QuestionController : MonoBehaviour
     }
 
     public void End() {
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("0_Main");
     }
 

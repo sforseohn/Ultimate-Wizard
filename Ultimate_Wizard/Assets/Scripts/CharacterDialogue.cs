@@ -29,6 +29,11 @@ public class CharacterDialogue : MonoBehaviour
         sentence.text = "";
         character_name.text = "";
         image.gameObject.SetActive(true);
+
+        if(SceneManager.GetActiveScene().name == "1_StoryFirst") {
+            // Start Opening Bgm
+            SoundManager.instance.BgmPlay(0);
+        }
     }
 
     private void Start() {
@@ -137,10 +142,14 @@ public class CharacterDialogue : MonoBehaviour
     }
 
     public void End() {
+        SoundManager.instance.DestroyBgm();
         SceneManager.LoadScene("0_Main");
     }
 
     public void Skip() {
+        if(SceneManager.GetActiveScene().name == "1_StorySecond") {
+            SoundManager.instance.DestroyBgm();
+        }
         StopCoroutine("Next");
         EndDialogue();
     }
@@ -156,9 +165,7 @@ public class CharacterDialogue : MonoBehaviour
         }
 
         StopCoroutine("FadeInCoroutine");
-        if(scene_name == "2_DummySelect" || scene_name == "0_Main") {
-            SoundManager.instance.DestroyBgm();
-        }
+        
         // 화면 전환
         SceneManager.LoadScene(scene_name);
     }

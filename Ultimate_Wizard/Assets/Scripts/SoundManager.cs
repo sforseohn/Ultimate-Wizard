@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance = null;
-    [SerializeField] private AudioSource bgm;
+    // 순서대로 opening, dummy, shooting, ending
+    [SerializeField] private AudioSource[] audios;
+    private AudioSource bgm;
 
     private void Awake() {
         if(instance == null) {
@@ -16,17 +18,19 @@ public class SoundManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
-        bgm.Play();
     }
 
-    public void SetBgm(AudioSource bgm) {
+    public void BgmPlay(int scene) {
+        this.bgm = audios[scene];
+        StartBgm();
+    }
+
+    private void SetBgm(AudioSource bgm) {
         this.bgm = bgm;
     }
 
-    // Start is called before the first frame update
-    void Start() {
-        // bgm.Play();
+    private void StartBgm() {
+        bgm.Play();
     }
 
     public void DestroyBgm() {

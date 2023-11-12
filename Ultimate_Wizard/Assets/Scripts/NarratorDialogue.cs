@@ -22,13 +22,10 @@ public class NarratorDialogue : MonoBehaviour
 
     public string text = "";
 
-    // 사운드
-    [SerializeField] private AudioSource bgm;
-
     // 초기 세팅
     private void Awake() {
         image.gameObject.SetActive(true);
-        SoundManager.instance.SetBgm(bgm);
+        SoundManager.instance.BgmPlay(3);
         sentence.text = "";
     }
 
