@@ -27,9 +27,13 @@ public class QuestionController : MonoBehaviour
     private string text = "";
     private int count = 0; // 대화 얼마나 진행되었는지
 
+    // 사운드
+    [SerializeField] private AudioSource bgm;
+
     // 초기 세팅
     private void Awake() {
         Debug.Log("3_Dummy 트레이닝 시작");
+        SoundManager.instance.SetBgm(bgm);
         image.gameObject.SetActive(true);
         ShowQuestion(false);
     }
