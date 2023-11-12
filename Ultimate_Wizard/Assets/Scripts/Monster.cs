@@ -5,16 +5,13 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField]
-    public float maxHealth = 2000f;
+    public float maxHealth = 100f;
 
-    public float health = 2000f;
+    public float health = 100f;
 
     [SerializeField]
     private float delay = 2f; // 기준 딜레이
     public float curDelay;        // 현재 딜레이 시간
-
-    [SerializeField]
-    private int roundNum = 30;
 
     [SerializeField]
     private GameObject bullet;
@@ -28,6 +25,9 @@ public class Monster : MonoBehaviour
     private GameObject player;
 
     [SerializeField]
+    int roundNumA = 31;
+    [SerializeField]
+    int roundNumB = 23;
     private AudioSource bgm;
 
     private bool canShoot = true;
@@ -47,6 +47,16 @@ public class Monster : MonoBehaviour
     private float blinkTotalDuration = 0.3f;
     private bool startBlinking = false;
 
+    private Vector2 originalPosition;
+
+    private bool isAttack4 = false;
+    private int roundNum = 30;
+
+    private void Start()
+    {
+       originalPosition = transform.position;
+    }
+
     void Update()
     {
         if (health <= 0 && !isWin) // 플레이어의 승리
@@ -63,8 +73,13 @@ public class Monster : MonoBehaviour
             changeTime = Time.time + duration; // 다음 패턴 변경 시간 설정
             Debug.Log(curPattern);
         }
-        // 현재 패턴 실행
-        Attack(curPattern);
+
+        if (!isAttack4)
+        {
+            // 현재 패턴 실행
+            Attack(curPattern);
+        }
+       
         Reload();
     }
 
@@ -93,7 +108,7 @@ public class Monster : MonoBehaviour
                 AttackPattern3();
                 break;
             case 4:
-                AttackPattern1();
+                AttackPattern4();
                 break;
             case 5:
                 AttackPattern2();
@@ -170,7 +185,7 @@ public class Monster : MonoBehaviour
             if (lines % 2 == 0)
             {
                 // 짝수일 때 중앙이 빈 곳을 향하도록 설정
-                angle = (i < lines / 2) ? i * angleDiff : (i - (lines - 1) / 2) * -angleDiff;
+                angle = (i < lines / 2) ? i * angleDiff : (i - (lines - 1) / 2) * - angleDiff;
             }
             else
             {
@@ -183,13 +198,10 @@ public class Monster : MonoBehaviour
     }
 
     void AttackPattern3()
-    {
-        int roundNumA = 50;
-        int roundNumB = 30;
-
+    { 
         if (roundNum == roundNumA)
         {
-            roundNum = roundNumB;
+           roundNum = roundNumB;
         }
         else
         {
@@ -208,6 +220,45 @@ public class Monster : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * i / roundNum + Vector3.forward * 90;
             bullet.transform.Rotate(rotVec);
         }
+    }
+
+    private void AttackPattern4()
+    {
+        isAttack4 = true;
+        StartCoroutine(MoveToPlayerAndReturn());
+    }
+
+    private IEnumerator MoveToPlayerAndReturn()
+    {
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+
+        // 플레이어의 위치로 일정 시간동안 이동합니다.
+        
+        Vector2 targetPosition = player.transform.position;
+        targetPosition.x = 5f;
+        float moveTime = 0.8f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveTime)
+        {
+            rigid.MovePosition(Vector2.Lerp(originalPosition, targetPosition, elapsedTime / moveTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 대기 시간을 설정합니다. 예: 1.5초 동안 대기
+        float waitTime = 0.3f;
+        yield return new WaitForSeconds(waitTime);
+
+        // 원래 위치로 되돌아갑니다.
+        elapsedTime = 0f;
+        while (elapsedTime < moveTime)
+        {
+            rigid.MovePosition(Vector2.Lerp(targetPosition, originalPosition, elapsedTime / moveTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        isAttack4 = false;
     }
 
     IEnumerator ShootCooldown()
