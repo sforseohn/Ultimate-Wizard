@@ -43,8 +43,12 @@ public class SoundManager : MonoBehaviour
     }
 
     public void DestroyBgm() {
-        // Destroy(gameObject);
-        bgm.Stop();
+        Debug.Log($"gameObject: '{gameObject}'");
+        if(SceneManager.GetActiveScene().name == "1_StorySecond") {
+            Destroy(gameObject);
+        } else {
+            bgm.Stop();
+        }
     }
 
     public void Clap(AudioSource audio) {
