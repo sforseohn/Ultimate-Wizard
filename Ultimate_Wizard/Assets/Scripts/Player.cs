@@ -168,7 +168,7 @@ IEnumerator BlinkCoroutine(int blinkCount)
 
     for (int i = 0; i < blinkCount; i++)
     {
-        yield return new WaitForSecondsRealtime(blinkDuration); // RealtimeÀ» »ç¿ëÇÏ¿© timescale¿¡ ¿µÇâ ¹ÞÁö ¾Êµµ·Ï ÇÔ
+        yield return new WaitForSecondsRealtime(blinkDuration); // Realtimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ timescaleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½
         GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
     }
 
@@ -216,7 +216,7 @@ void FireS() {
             ui.UpdateLifeIcon(life);
             if (isHurt == false)
             {
-                StartCoroutine(BlinkCoroutine(10)); // 5¹ø ±ôºýÀÓ
+                StartCoroutine(BlinkCoroutine(10)); // 5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
             }
             isHurt = true;
 
